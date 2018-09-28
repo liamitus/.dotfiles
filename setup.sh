@@ -23,6 +23,10 @@ fi
 echo "Installing lolcat..."
 gem install lolcat
 
+echo "Installing pyenv..."
+brew install pyenv
+brew install --HEAD pyenv-virtualenv
+
 echo "Adding symlinks..."
 ln -Fsv ~/.dotfiles/.zshrc ~/.zshrc
 ln -Fsv ~/.dotfiles/.zsh ~/.zsh
