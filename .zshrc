@@ -19,7 +19,9 @@ export GOPATH="$HOME/go"
 export SAILFISH_CONTRACT_PATH=~/dev/symbiont-node/src/stdlib:~/dev/private-equity/contracts:~/dev/symbiont-node/src/sailfish
 
 # Local, non-git-committed exports
-source ~/.dotfiles/.localzsh
+if [ -f ~/.dotfiles/.localzsh ]; then
+  source ~/.dotfiles/.localzsh
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -72,7 +74,9 @@ ENABLE_CORRECTION="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.iterm2_shell_integration.zsh
+if [ -f ~/.iterm2_shell_integration.zsh ]; then
+  source ~/.iterm2_shell_integration.zsh
+fi
 
 # User configuration
 
@@ -141,7 +145,8 @@ eval "$(hub alias -s)"
 # fish-like autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-fortune | cowsay -f `cowsay -l | gsort -R | head -1` | lolcat
+# Print welcome message
+fortune | cowsay -f `cowsay -l | tail -n +2 | xargs -n1 | gsort -R | head -1` | lolcat
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/dev/gocloud/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/dev/gocloud/google-cloud-sdk/path.zsh.inc"; fi
