@@ -62,7 +62,7 @@ let g:pymode_lint_ignore = ""
 
 " syntastic
 let g:syntastic_python_checkers = ['pylint', 'flake8']
-let g:syntastic_python_pylint_post_args = '--additional-builtins=public,clientside,executable,PostTxArgs,cvm,Any,Callable,CommitmentId,Decimal,Dict,Fraction,Identifier,ItemsView,KeysView,List,Optional,Set,ChannelName,Timestamp,Transaction,Tuple,Union,ValuesView,WalletId,Schema,Contract,ContractRef'
+let g:syntastic_python_pylint_post_args = '--additional-builtins=PUBLIC,public,clientside,executable,PostTxArgs,cvm,Any,Callable,CommitmentId,Decimal,Dict,Fraction,Identifier,ItemsView,KeysView,List,Optional,Set,ChannelName,Timestamp,Transaction,Tuple,Union,ValuesView,WalletId,Schema,Contract,ContractRef'
 " flake8 config is located at ~/.config/flake8
 
 " }}}
@@ -118,6 +118,9 @@ set hlsearch
 
 " Word splitting
 set iskeyword+=-
+
+" Netrw (:Ex, :Vex, :Sex, :Tex)
+let g:netrw_list_hide= '.*\.swp$,.*\.un\~$,.*\.swo$'
 
 " Fuzzy File Search {{{
 
