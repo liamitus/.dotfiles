@@ -42,9 +42,6 @@ repos=(
   # Status bar
   https://github.com/vim-airline/vim-airline
 
-  # File browser
-  #https://github.com/scrooloose/nerdtree.git
-
   # Fuzzy file search
   https://github.com/ctrlpvim/ctrlp.vim.git
 
@@ -81,7 +78,6 @@ repos=(
 
   # L9 Vim Uility plugins (original deleted by author
   https://github.com/eparreno/vim-l9
-
   
   )
 
@@ -89,20 +85,10 @@ repos=(
 # <destination>;<url>[;<filename>]
 other=(
 
-#  'vim-l9/autoload;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/autoload/l9.vim'
-#  'vim-l9/autoload/l9;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/autoload/l9/async.py'
-#  'vim-l9/autoload/l9;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/autoload/l9/async.vim'
-#  'vim-l9/autoload/l9;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/autoload/l9/quickfix.vim'
-#  'vim-l9/autoload/l9;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/autoload/l9/tempbuffer.vim'
-#  'vim-l9/autoload/l9;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/autoload/l9/tempvariables.vim'
-#  'vim-l9/doc;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/doc/l9.jax'
-#  'vim-l9/doc;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/doc/l9.txt'
-#  'vim-l9/plugin;https://bitbucket.org/ns9tks/vim-l9/raw/3bb534a720fa762aa01d2df2d5d41bd3c4122169/plugin/l9.vim'
   'zenburn/colors;https://raw.githubusercontent.com/jnurmine/Zenburn/master/colors/zenburn.vim'
   'wombat/colors;http://files.werx.dk/wombat.vim'
   'coffee/colors;https://raw.githubusercontent.com/duythinht/vim-coffee/master/colors/coffee.vim'
   'molokai/colors;https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
- # 'glsl/syntax;http://www.vim.org/scripts/download_script.php?src_id=3194;glsl.vim'
 
   )
 
