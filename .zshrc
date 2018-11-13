@@ -132,6 +132,9 @@ alias mtrun="mt && dev_appserver.py app/app.yaml"
 
 alias pyclean="find . -name \*.pyc -delete"
 
+# Projects
+alias ml="cd ~/dev/moonlambo"
+
 # Symbiont-specific aliases
 alias pe="cd ~/dev/private-equity"
 alias sf="cd ~/dev/symbiont-node/src/sailfish && pyenv activate sailfish"

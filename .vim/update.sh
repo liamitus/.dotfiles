@@ -48,8 +48,8 @@ repos=(
   # Autocomplete
   #https://github.com/Valloric/YouCompleteMe.git
 
-  # Ack for searching
-  https://github.com/mileszs/ack.vim.git
+  # Fuzzy search project
+  https://github.com/junegunn/fzf.vim.git
 
   # Git in the gutter
   https://github.com/airblade/vim-gitgutter.git

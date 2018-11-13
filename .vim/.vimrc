@@ -124,6 +124,8 @@ let g:netrw_list_hide= '.*\.swp$,.*\.un\~$,.*\.swo$'
 
 " Fuzzy File Search {{{
 
+set rtp+=/usr/local/opt/fzf
+
 " Ctrl+P
 let g:ctrlp_map = '<Leader>f'
 let g:ctrlp_match_window_bottom = 0
@@ -224,8 +226,8 @@ nnoremap <C-p> :bprev<CR>
 " Git
 nnoremap <leader>b :Gblame<CR>
 
-" File tree browser
-nnoremap <leader>e :NERDTreeToggle<CR>
+" Fuzzy file search
+nnoremap <leader>e :Ag<CR>
 
 " Tab/Space normalization
 nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>

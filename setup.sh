@@ -21,6 +21,7 @@ install_with_brew=(
 
   # Ack-like grep but optimized for programmers
   the_silver_searcher
+  fzf
 
 )
 
