@@ -189,21 +189,6 @@ nnoremap <leader>p :set paste!<CR>
 nnoremap j gj
 nnoremap k gk
 
-" Grep Shortcuts {{{
-
-nnoremap \, :grep -Rins --exclude-dir={.sourcemaps} 
-nnoremap \. :grep -Rns --exclude-dir={migrations,python2.7,site-packages} --include \*.py --include \*.html --include \*.coffee --include \*.scss <cword> .<CR>
-nnoremap \p :grep -Rins --exclude-dir={migrations,python1.7} --include \*.py 
-nnoremap \P :grep -Rns --exclude-dir={migrations,python1.7} --include \*.py <cword> .<CR>
-nnoremap \c :grep -Rins --include \*.coffee 
-nnoremap \C :grep -Rns --include \*.coffee <cword> .<CR>
-nnoremap \h :grep -Rins --exclude-dir={site-packages} --include \*.html 
-nnoremap \H :grep -Rns --exclude-dir={site-packages} --include \*.html <cword> .<CR>
-nnoremap \s :grep -Rins --include \*.scss 
-nnoremap \S :grep -Rns --include \*.scss <cword> .<CR>
-
-" }}}
-
 cnoremap <C-a>  <Home>
 cnoremap <C-b>  <Left>
 cnoremap <C-f>  <Right>
@@ -227,13 +212,19 @@ nnoremap <C-p> :bprev<CR>
 nnoremap <leader>b :Gblame<CR>
 
 " Fuzzy file search
-nnoremap <leader>e :Ag<CR>
+nnoremap <leader>f :Ag<CR>
+
+" File Browser
+nnoremap <leader>e :Ex<CR>
+nnoremap <leader>s :Sex<CR>
+nnoremap <leader>t :Tex<CR>
+nnoremap <leader>v :Vex<CR>
 
 " Tab/Space normalization
-nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
-nnoremap <leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
-nnoremap <leader>m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
-nnoremap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
+"nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
+"nnoremap <leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
+"nnoremap <leader>m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+"nnoremap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 
 nnoremap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nnoremap ; :CtrlPBuffer<CR>
