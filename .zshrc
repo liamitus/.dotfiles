@@ -28,6 +28,11 @@ fi
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="bullet-train"
+TMOUT=1
+
+TRAPALRM() {
+    zle reset-prompt
+}
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -136,7 +141,7 @@ alias pyclean="find . -name \*.pyc -delete"
 alias ml="cd ~/dev/moonlambo"
 
 # Symbiont-specific aliases
-alias pe="cd ~/dev/private-equity"
+alias pe="sf && cd ~/dev/private-equity && export SAILFISH_CONTRACT_PATH=/Users/liamhowell/dev/private-equity/contracts"
 alias sf="cd ~/dev/symbiont-node/src/sailfish && pyenv activate sailfish"
 alias cb="cd ~/dev/symbiont-node/src/capybara"
 alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
