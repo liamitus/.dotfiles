@@ -28,8 +28,9 @@ fi
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="bullet-train"
-TMOUT=1
 
+# Reset the prompt every second to update the clock
+TMOUT=1
 TRAPALRM() {
     zle reset-prompt
 }
