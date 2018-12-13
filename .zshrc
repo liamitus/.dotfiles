@@ -30,10 +30,10 @@ fi
 ZSH_THEME="bullet-train"
 
 # Reset the prompt every second to update the clock
-TMOUT=1
-TRAPALRM() {
-    zle reset-prompt
-}
+#TMOUT=1
+#TRAPALRM() {
+    #zle reset-prompt
+#}
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -148,6 +148,8 @@ alias cb="cd ~/dev/symbiont-node/src/capybara"
 alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
 alias ass="cd ~/dev/assembly"
 alias rundocker="docker run --name state-db -p 5432:5432 -d us.gcr.io/development-148212/txe-postgres:v3.0.0"
+
+alias ctags="`brew --prefix`/bin/ctags"
 
 eval "$(hub alias -s)"
 

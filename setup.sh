@@ -23,6 +23,9 @@ install_with_brew=(
   the_silver_searcher
   fzf
 
+  # Development helper
+  ctags
+
 )
 
 echo "Installing Oh-my-zsh..."
@@ -51,6 +54,12 @@ done
 
 # Custom stuff not installed with brew
 
+echo "Creating backup folder"
+mkdir ~/.backups
+mkdir ~/.backups/swaps
+mkdir ~/.backups/undofiles
+mkdir ~/.backups/backups
+
 echo "Adding symlinks..."
 ln -Fsv ~/.dotfiles/.zshrc ~/.zshrc
 ln -Fsv ~/.dotfiles/.zsh ~/.zsh
@@ -59,6 +68,8 @@ ln -Fsv ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -Fsv ~/.dotfiles/.zsh ~/.zsh
 ln -Fsv ~/.dotfiles/.oh-my-zsh ~/.oh-my-zsh
 ln -Fsv ~/.dotfiles/iterm_profiles ~/Documents/iterm_profiles
+# Not sure why this gets created...
+rm ~/.vim/.vim
 
 echo "Installing custom fonts..."
 rm -rf fonts
