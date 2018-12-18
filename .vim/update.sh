@@ -69,9 +69,12 @@ repos=(
   https://github.com/tpope/vim-surround.git
   https://github.com/tpope/vim-sensible.git
   https://github.com/tpope/vim-fugitive.git
+  https://github.com/tpope/vim-vinegar.git
+
+  # Comment/uncomment lines
+  https://github.com/scrooloose/nerdcommenter.git
 
   # Not sure what these do
-  https://github.com/scrooloose/nerdcommenter.git
   https://github.com/docunext/closetag.vim.git
   https://github.com/mtth/scratch.vim.git
 
