@@ -29,6 +29,12 @@ fi
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="bullet-train"
 
+# Reset the prompt every second to update the clock
+#TMOUT=1
+#TRAPALRM() {
+    #zle reset-prompt
+#}
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -136,12 +142,14 @@ alias pyclean="find . -name \*.pyc -delete"
 alias ml="cd ~/dev/rational"
 
 # Symbiont-specific aliases
-alias pe="cd ~/dev/private-equity"
+alias pe="sf && cd ~/dev/private-equity && export SAILFISH_CONTRACT_PATH=/Users/liamhowell/dev/private-equity/contracts"
 alias sf="cd ~/dev/symbiont-node/src/sailfish && pyenv activate sailfish"
 alias cb="cd ~/dev/symbiont-node/src/capybara"
 alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
 alias ass="cd ~/dev/assembly"
 alias rundocker="docker run --name state-db -p 5432:5432 -d us.gcr.io/development-148212/txe-postgres:v3.0.0"
+
+alias ctags="`brew --prefix`/bin/ctags"
 
 eval "$(hub alias -s)"
 

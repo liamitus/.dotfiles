@@ -47,19 +47,6 @@ let g:ycm_complete_in_strings = 1 " Completion in string
 
 " Python IDE {{{
 
-" python-mode
-let ropevim_enable_shortcuts = 1
-"let g:pymode = 0
-let g:pymode_python = 'python3'
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_extended_complete = 1
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-let g:pymode_lint_ignore = ""
-"E501,W"
-
 " syntastic
 let g:syntastic_python_checkers = ['pylint', 'flake8']
 let g:syntastic_python_pylint_post_args = '--additional-builtins=PUBLIC,public,clientside,executable,PostTxArgs,cvm,Any,Callable,CommitmentId,Decimal,Dict,Fraction,Identifier,ItemsView,KeysView,List,Optional,Set,ChannelName,Timestamp,Transaction,Tuple,Union,ValuesView,WalletId,Schema,Contract,ContractRef'
@@ -75,10 +62,13 @@ let g:syntastic_python_pylint_post_args = '--additional-builtins=PUBLIC,public,c
 set shell=zsh
 
 " The colorscheme
-" colorscheme coffee
-" colorscheme molokai
+ "colorscheme coffee
+ "colorscheme molokai
 let g:zenburn_transparent=1
 colorscheme zenburn
+"colorscheme solarized8
+"let g:airline_solarized_bg='dark'
+"colorscheme carbonized-dark
 " Override the black background so we can see the iTerm2 background image
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -127,7 +117,6 @@ let g:netrw_list_hide= '.*\.swp$,.*\.un\~$,.*\.swo$'
 set rtp+=/usr/local/opt/fzf
 
 " Ctrl+P
-let g:ctrlp_map = '<Leader>f'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
@@ -182,6 +171,7 @@ let mapleader = "\<Space>"
  
 " Line numbers
 nnoremap <leader>l :setlocal number!<CR>
+nnoremap <leader>n :setlocal rnu!<CR>
 
 " Paste mode (maintains formatting)
 nnoremap <leader>p :set paste!<CR>
@@ -216,7 +206,7 @@ nnoremap <leader>f :Ag<CR>
 
 " File Browser
 nnoremap <leader>e :Ex<CR>
-nnoremap <leader>s :Sex<CR>
+nnoremap <leader>x :Sex<CR>
 nnoremap <leader>t :Tex<CR>
 nnoremap <leader>v :Vex<CR>
 
@@ -284,3 +274,4 @@ function! s:swap_down()
 endfunction
 
 " }}}
+set tags=tags

@@ -61,7 +61,6 @@ repos=(
   https://github.com/kchmck/vim-coffee-script.git
   https://github.com/elzr/vim-json.git
   https://github.com/ap/vim-css-color.git
-  https://github.com/klen/python-mode.git
   https://github.com/leafgarland/typescript-vim.git
 
   # The Pope of Tim
@@ -70,9 +69,12 @@ repos=(
   https://github.com/tpope/vim-surround.git
   https://github.com/tpope/vim-sensible.git
   https://github.com/tpope/vim-fugitive.git
+  https://github.com/tpope/vim-vinegar.git
+
+  # Comment/uncomment lines
+  https://github.com/scrooloose/nerdcommenter.git
 
   # Not sure what these do
-  https://github.com/scrooloose/nerdcommenter.git
   https://github.com/docunext/closetag.vim.git
   https://github.com/mtth/scratch.vim.git
 
@@ -89,6 +91,8 @@ other=(
   'wombat/colors;http://files.werx.dk/wombat.vim'
   'coffee/colors;https://raw.githubusercontent.com/duythinht/vim-coffee/master/colors/coffee.vim'
   'molokai/colors;https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
+  'solarized/colors;https://raw.githubusercontent.com/lifepillar/vim-solarized8/master/colors/solarized8.vim'
+  'carbonzied/colors;https://raw.githubusercontent.com/nightsense/carbonized/master/colors/carbonized-dark.vim'
 
   )
 
