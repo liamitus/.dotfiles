@@ -133,7 +133,7 @@ alias mtrun="mt && dev_appserver.py app/app.yaml"
 alias pyclean="find . -name \*.pyc -delete"
 
 # Projects
-alias ml="cd ~/dev/moonlambo"
+alias ml="cd ~/dev/rational"
 
 # Symbiont-specific aliases
 alias pe="cd ~/dev/private-equity"
