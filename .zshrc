@@ -3,24 +3,37 @@ export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/dev/google-cloud-sdk/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/dev/scripts:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 
-export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
-export PATH="$PATH:$PYTHON_BIN_PATH"
+#export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
+#export PATH="$PATH:$PYTHON_BIN_PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export GOPATH=~/dev/go
+# Exports
+export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 
-# Exports
-export SYMBIONT_REPOS_PATH="$HOME/dev/"
-export GOPATH="$HOME/go"
+# Symbiont
+
 export SAILFISH_CONTRACT_PATH=~/dev/symbiont-node/src/stdlib:~/dev/private-equity/contracts:~/dev/symbiont-node/src/sailfish
+export SYMBIONT_HOME="$HOME/dev/symbiont-node"
+export SYMBIONT_REPOS_PATH="$HOME/dev/"
+
+export KUBECONFIG=/Users/liamhowell/.secrets/alternative-assets-multi-dev-1.json
+export KUBE_CONFIG_PATH=$KUBECONFIG
+
+alias pe="cd ~/dev/private-equity && export SAILFISH_CONTRACT_PATH=/Users/liamhowell/dev/private-equity/contracts"
+alias sf="cd ~/dev/symbiont-node/src/sailfish && pipenv shell"
+alias cb="cd ~/dev/symbiont-node/src/capybara"
+alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
+alias ass="cd ~/dev/assembly"
+alias rundocker="docker run --name state-db -p 5432:5432 -d us.gcr.io/development-148212/txe-postgres:v3.0.0"
 
 # Local, non-git-committed exports
-if [ -f ~/.dotfiles/.localzsh ]; then
-  source ~/.dotfiles/.localzsh
+if [ -f ~/.localzsh ]; then
+  source ~/.localzsh
 fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -118,37 +131,13 @@ alias v=vim
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=false
 
+alias pyclean="find . -name \*.pyc -delete"
+#
+# Projects
+
+alias ml="cd ~/dev/moonlambo"
 alias mt="cd $HOME/dev/go/src/github.com/liamitus/mercury-tax"
 alias mtrun="mt && dev_appserver.py app/app.yaml"
-
-#export DJANGO_SETTINGS_MODULE=app.settings
-#alias si="cd ~/Workspace/seedinvest && source seedinvest/settings/local_environment.sh && source bin/activate"
-#alias sis="si && ./manage.py shell_plus"
-#alias cel='python manage.py celeryd -l info --settings=seedinvest.settings.local_settings_file_used'
-#alias grun='grunt watch'
-#alias tunnel='ssh -D 10013 ubuntu@ec2-54-208-139-18.compute-1.amazonaws.com'
-#alias loadsi="si && source seedinvest/settings/local_environment.sh && memcached -d && (redis-server /usr/local/etc/redis.conf --daemonize yes) && (/usr/local/sbin/rabbitmq-server -detached)"
-#alias run='python manage.py runserver --settings=seedinvest.settings.local_liam'
-#alias si_swarm='python manage.py si_swarm --settings=seedinvest.settings.local_liam'
-#alias test='python manage.py test seedinvest --settings=seedinvest.settings.local_test'
-#alias mq=/usr/local/sbin/rabbitmq-server
-#alias elasticsearch=/usr/local/bin/elasticsearch
-#alias silocal="~/Workspace/scripts/start_local.sh iTerm2 liam"
-#alias s='si && grunt prepare_statics'
-
-alias pyclean="find . -name \*.pyc -delete"
-
-# Projects
-alias ml="cd ~/dev/moonlambo"
-
-# Symbiont-specific aliases
-alias pe="sf && cd ~/dev/private-equity && export SAILFISH_CONTRACT_PATH=/Users/liamhowell/dev/private-equity/contracts"
-alias sf="cd ~/dev/symbiont-node/src/sailfish && pyenv activate sailfish"
-alias cb="cd ~/dev/symbiont-node/src/capybara"
-alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
-alias ass="cd ~/dev/assembly"
-alias rundocker="docker run --name state-db -p 5432:5432 -d us.gcr.io/development-148212/txe-postgres:v3.0.0"
-
 alias ctags="`brew --prefix`/bin/ctags"
 
 eval "$(hub alias -s)"
@@ -166,7 +155,6 @@ if [ -f "$HOME/dev/gocloud/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/
 if [ -f "$HOME/dev/gocloud/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/dev/gocloud/google-cloud-sdk/completion.zsh.inc"; fi
 
 #Pyenv setup
-export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -175,3 +163,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export GPG_TTY=$(tty)
+
+if [ -n "$PYENV_COMMAND" ] && [ ! -x "$PYENV_COMMAND_PATH" ]; then
+  versions=($(pyenv-whence "${PYENV_COMMAND}" 2>/dev/null || true))
+  if [ -n "${versions}" ]; then
+    if [ "${#versions[@]}" -gt 1 ]; then
+      echo "pyenv-implicit: found multiple ${PYENV_COMMAND} in pyenv. Use version ${versions[0]}." 1>&2
+    fi
+    PYENV_COMMAND_PATH="${PYENV_ROOT}/versions/${versions[0]}/bin/${PYENV_COMMAND}"
+  fi
+fi

@@ -110,7 +110,8 @@ set hlsearch
 set iskeyword+=-
 
 " Netrw (:Ex, :Vex, :Sex, :Tex)
-let g:netrw_list_hide= '.*\.swp$,.*\.un\~$,.*\.swo$'
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+set wildignore+=.*\.swp$,.*\.un\~$,.*\.swo$
 
 " Fuzzy File Search {{{
 
@@ -171,10 +172,50 @@ let mapleader = "\<Space>"
  
 " Line numbers
 nnoremap <leader>l :setlocal number!<CR>
-nnoremap <leader>n :setlocal rnu!<CR>
+nnoremap <leader>L :setlocal rnu!<CR>
+
+" Vim line wrapping
+nnoremap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 
 " Paste mode (maintains formatting)
 nnoremap <leader>p :set paste!<CR>
+
+" Editing this vimrc from anywhere
+nnoremap <leader>, :tabedit $MYVIMRC<CR>
+
+" Saving the current file
+nnoremap <leader>s :w<CR>
+
+" Quitting the current file
+nnoremap <leader>q :q<CR>
+
+" Copy entire buffer to clipboard
+nnoremap <leader>y gg"+yG
+
+" Git
+nnoremap <leader>b :Gblame<CR>
+
+" Fuzzy file search
+nnoremap <leader>f :Ag<CR>
+
+" Argument wrapping/unwrapping
+nnoremap <leader>a :ArgWrap<CR>
+
+" File Browser
+nnoremap <leader>e :Ex<CR>
+nnoremap <leader>x :Sex<CR>
+nnoremap <leader>t :Tex<CR>
+nnoremap <leader>v :Vex<CR>
+
+" Python support
+nnoremap <Leader>g :call RopeGotoDefinition()<CR>
+nnoremap <Leader>d Obreakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
+
+" Tab/Space normalization
+"nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
+"nnoremap <leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
+"nnoremap <leader>m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+"nnoremap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -198,48 +239,17 @@ nnoremap <C-e> :e#<CR>
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
 
-" Git
-nnoremap <leader>b :Gblame<CR>
-
-" Fuzzy file search
-nnoremap <leader>f :Ag<CR>
-
-" File Browser
-nnoremap <leader>e :Ex<CR>
-nnoremap <leader>x :Sex<CR>
-nnoremap <leader>t :Tex<CR>
-nnoremap <leader>v :Vex<CR>
-
-" Tab/Space normalization
-"nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
-"nnoremap <leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
-"nnoremap <leader>m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
-"nnoremap <leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
-
-nnoremap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nnoremap ; :CtrlPBuffer<CR>
 nnoremap <C-N> :cnext<CR>
 nnoremap <C-P> :cprev<CR>
 
+" Move current line up or down
 noremap <silent> <C-k> :call <SID>swap_up()<CR>
 noremap <silent> <C-j> :call <SID>swap_down()<CR>
-
-" Python support
-nnoremap <Leader>g :call RopeGotoDefinition()<CR>
-nnoremap <Leader>d Oimport pdb; from pprint import pprint; pdb.set_trace() # BREAKPOINT<C-c>
 
 " Insert the current date
 nnoremap <F5> "=strftime("%m-%d-%Y")<CR>p
 inoremap <F5> <C-R>=strftime("%m-%d-%Y")<CR>
- 
-" Editing vimrc
-nnoremap <leader>, :tabedit $MYVIMRC<CR>
-
-" Saving the current file
-nnoremap <leader>s :w<CR>
-
-" Quitting the current file
-nnoremap <leader>q :q<CR>
 
 " }}}
 

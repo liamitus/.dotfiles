@@ -63,6 +63,10 @@ repos=(
   https://github.com/ap/vim-css-color.git
   https://github.com/leafgarland/typescript-vim.git
 
+  # Python code folding
+  https://github.com/Konfekt/FastFold.git
+  https://github.com/tmhedberg/SimpylFold.git
+
   # The Pope of Tim
   https://github.com/tpope/vim-pathogen.git
   https://github.com/tpope/vim-abolish.git
@@ -73,6 +77,9 @@ repos=(
 
   # Comment/uncomment lines
   https://github.com/scrooloose/nerdcommenter.git
+
+  # Argument wrapping/unwrapping
+  https://github.com/FooSoft/vim-argwrap.git
 
   # Not sure what these do
   https://github.com/docunext/closetag.vim.git
