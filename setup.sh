@@ -82,6 +82,11 @@ rm -rf fonts
 echo "Installing vim plugins..."
 source ~/.dotfiles/.vim/update.sh all
 
+echo "Creating vim backups directory..."
+mkdir -p ~/.backups/swaps
+mkdir -p ~/.backups/backups
+mkdir -p ~/.backups/undofiles
+
 echo "
 Reload the shell with:
 

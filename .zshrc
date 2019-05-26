@@ -36,6 +36,13 @@ if [ -f ~/.localzsh ]; then
   source ~/.localzsh
 fi
 
+# Projects
+
+alias ml="cd ~/dev/moonlambo"
+alias mt="cd $HOME/dev/go/src/github.com/liamitus/mercury-tax"
+alias mtrun="mt && dev_appserver.py app/app.yaml"
+alias ctags="`brew --prefix`/bin/ctags"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -132,13 +139,6 @@ alias v=vim
 export PIP_REQUIRE_VIRTUALENV=false
 
 alias pyclean="find . -name \*.pyc -delete"
-#
-# Projects
-
-alias ml="cd ~/dev/moonlambo"
-alias mt="cd $HOME/dev/go/src/github.com/liamitus/mercury-tax"
-alias mtrun="mt && dev_appserver.py app/app.yaml"
-alias ctags="`brew --prefix`/bin/ctags"
 
 eval "$(hub alias -s)"
 
