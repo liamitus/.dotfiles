@@ -24,7 +24,7 @@ export SYMBIONT_REPOS_PATH="$HOME/dev/"
 export KUBECONFIG=/Users/liamhowell/.secrets/alternative-assets-multi-dev-1.json
 export KUBE_CONFIG_PATH=$KUBECONFIG
 
-alias pe="cd ~/dev/private-equity && export SAILFISH_CONTRACT_PATH=/Users/liamhowell/dev/private-equity/contracts"
+alias pe="cd ~/dev/private-equity && pipenv shell"
 alias sf="cd ~/dev/symbiont-node/src/sailfish && pipenv shell"
 alias cb="cd ~/dev/symbiont-node/src/capybara"
 alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
@@ -133,7 +133,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias zshconfig="v ~/.zshrc"
-alias v=vim
+alias v=nvim
 
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=false

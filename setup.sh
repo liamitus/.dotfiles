@@ -26,6 +26,9 @@ install_with_brew=(
   # Development helper
   ctags
 
+  # Neovim
+  neovim
+
 )
 
 echo "Installing Oh-my-zsh..."
@@ -86,6 +89,11 @@ echo "Creating vim backups directory..."
 mkdir -p ~/.backups/swaps
 mkdir -p ~/.backups/backups
 mkdir -p ~/.backups/undofiles
+ 
+echo "Sharing vim config with neovim..."
+mkdir -p ~/.config/
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 echo "
 Reload the shell with:
