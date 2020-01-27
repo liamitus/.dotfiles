@@ -63,8 +63,21 @@ call plug#begin('~/.vim/plugged')
 " Python syntax highlighting
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
+" Intelligent code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Initialize plugin system
 call plug#end()
+
+" Set key bindings for navigating eslint errors.
+nmap <silent> [c <Plug>(ale_previous_wrap)
+nmap <silent> ]c <Plug>(ale_next_wrap)
+nmap <F6> <Plug>(ale_fix)
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['eslint']
 
 " }}}
 

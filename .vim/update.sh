@@ -42,7 +42,7 @@ repos=(
   # Status bar
   https://github.com/vim-airline/vim-airline
 
-  # Fuzzy file search
+  # File system browser.
   https://github.com/ctrlpvim/ctrlp.vim.git
 
   # The Pope of Tim
@@ -69,7 +69,7 @@ repos=(
   https://github.com/docunext/closetag.vim.git
   https://github.com/mtth/scratch.vim.git
 
-  # L9 Vim Uility plugins (original deleted by author
+  # L9 Vim Uility plugins (original deleted by author)
   https://github.com/eparreno/vim-l9
 
   # Syntax checker
@@ -80,6 +80,9 @@ repos=(
   https://github.com/elzr/vim-json.git
   https://github.com/ap/vim-css-color.git
   https://github.com/leafgarland/typescript-vim.git
+
+  # Linters
+  https://github.com/dense-analysis/ale.git
 
   # Python-specific
   https://github.com/numirias/semshi.git
