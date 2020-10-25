@@ -43,48 +43,55 @@ repos=(
   https://github.com/vim-airline/vim-airline
 
   # Fuzzy file search
-  https://github.com/ctrlpvim/ctrlp.vim.git
+  https://github.com/ctrlpvim/ctrlp.vim
 
   # The Pope of Tim
-  https://github.com/tpope/vim-pathogen.git
-  https://github.com/tpope/vim-abolish.git
-  https://github.com/tpope/vim-surround.git
-  https://github.com/tpope/vim-sensible.git
-  https://github.com/tpope/vim-fugitive.git
-  https://github.com/tpope/vim-vinegar.git
+  https://github.com/tpope/vim-pathogen
+  https://github.com/tpope/vim-abolish
+  https://github.com/tpope/vim-surround
+  https://github.com/tpope/vim-sensible
+  https://github.com/tpope/vim-fugitive
+  https://github.com/tpope/vim-vinegar
 
   # Comment/uncomment lines
-  https://github.com/scrooloose/nerdcommenter.git
+  https://github.com/scrooloose/nerdcommenter
 
   # Argument wrapping/unwrapping
-  https://github.com/FooSoft/vim-argwrap.git
+  https://github.com/FooSoft/vim-argwrap
 
   # Fuzzy search project
-  https://github.com/junegunn/fzf.vim.git
+  https://github.com/junegunn/fzf.vim
 
   # Git in the gutter
-  https://github.com/airblade/vim-gitgutter.git
+  https://github.com/airblade/vim-gitgutter
 
   # Not sure what these do
-  https://github.com/docunext/closetag.vim.git
-  https://github.com/mtth/scratch.vim.git
+  https://github.com/docunext/closetag.vim
+  https://github.com/mtth/scratch.vim
 
   # L9 Vim Uility plugins (original deleted by author
   https://github.com/eparreno/vim-l9
 
   # Syntax checker
-  https://github.com/scrooloose/syntastic.git
+  https://github.com/scrooloose/syntastic
 
   # Language-specific plugins
-  https://github.com/kchmck/vim-coffee-script.git
-  https://github.com/elzr/vim-json.git
-  https://github.com/ap/vim-css-color.git
-  https://github.com/leafgarland/typescript-vim.git
+  https://github.com/kchmck/vim-coffee-script
+  https://github.com/elzr/vim-json
+  https://github.com/ap/vim-css-color
+  https://github.com/leafgarland/typescript-vim
+
+  # Typescript-specific
+  https://github.com/MaxMEllon/vim-jsx-pretty
+  https://github.com/dense-analysis/ale
 
   # Python-specific
-  https://github.com/numirias/semshi.git
-  https://github.com/Konfekt/FastFold.git
-  https://github.com/tmhedberg/SimpylFold.git
+  https://github.com/numirias/semshi
+  https://github.com/Konfekt/FastFold
+  https://github.com/tmhedberg/SimpylFold
+
+  # Reason-specific
+  https://github.com/reasonml-editor/vim-reason-plus
 
   )
 

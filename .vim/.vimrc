@@ -56,6 +56,7 @@ let g:syntastic_python_pylint_post_args = '--additional-builtins=PUBLIC,public,c
 
 " Plug {{{
 
+let g:python3_host_prog = '/Users/liamhowell/.pyenv/versions/3.7.2/bin/python'
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
@@ -65,6 +66,14 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " Initialize plugin system
 call plug#end()
+
+" }}}
+
+" Tsuquyomi (typescript ide) {{{
+
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
+let g:tsuquyomi_use_local_typescript = 0
 
 " }}}
 
@@ -130,6 +139,9 @@ set wildignore+=.*\.swp$,.*\.un\~$,.*\.swo$
 " Fuzzy File Search {{{
 
 set rtp+=/usr/local/opt/fzf
+
+" fzf
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Ctrl+P
 let g:ctrlp_match_window_bottom = 0
@@ -210,7 +222,7 @@ nnoremap <leader>y gg"+yG
 nnoremap <leader>b :Gblame<CR>
 
 " Fuzzy file search
-nnoremap <leader>f :Ag<CR>
+nnoremap <leader>/ :Ag<CR>
 
 " Argument wrapping/unwrapping
 nnoremap <leader>a :ArgWrap<CR>
@@ -224,6 +236,7 @@ nnoremap <leader>v :Vex<CR>
 " Python support
 nnoremap <Leader>g :call RopeGotoDefinition()<CR>
 nnoremap <Leader>d Obreakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
+nnoremap <Leader>D Ofrom pprint import pprint; breakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
 
 " Tab/Space normalization
 "nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>

@@ -7,6 +7,13 @@
 #   ./setup.sh
 #
 
+install_with_brew_cask=(
+
+  # Kitty terminal. Uses GPU instead of CPU and is waaaaaay faster than iterm
+  kitty
+
+)
+
 install_with_brew=(
 
   # Languages
@@ -45,6 +52,17 @@ if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
   # Yes, really.
 fi
 
+echo "Installing brew cask packages..."
+for pkg in ${install_with_brew_cask[@]}; do
+  if brew list --cask --versions $pkg > /dev/null; then
+    echo "$pkg found in brew cask Cellar"
+  else
+    echo "Installing $pkg..."
+    brew cask install $pkg
+  fi
+done
+
+
 echo "Installing brew packages..."
 for pkg in ${install_with_brew[@]}; do
   if brew ls --versions $pkg > /dev/null; then
@@ -71,8 +89,7 @@ ln -Fsv ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -Fsv ~/.dotfiles/.zsh ~/.zsh
 ln -Fsv ~/.dotfiles/.oh-my-zsh ~/.oh-my-zsh
 ln -Fsv ~/.dotfiles/iterm_profiles ~/Documents/iterm_profiles
-# Not sure why this gets created...
-rm ~/.vim/.vim
+ln -Fsv ~/.config/kitty/kitty.conf
 
 echo "Installing custom fonts..."
 rm -rf fonts
@@ -92,8 +109,10 @@ mkdir -p ~/.backups/undofiles
  
 echo "Sharing vim config with neovim..."
 mkdir -p ~/.config/
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vimrc ~/.config/nvim/init.vim
+ln -s ~/.dotfiles/.vim ~/.config/nvim
+# Not sure why this gets created...
+rm ~/.vim/.vim
+ln -s ~/.dotfiles/.vim/.vimrc ~/.config/nvim/init.vim
 
 echo "
 Reload the shell with:

@@ -4,6 +4,7 @@ export PATH="$HOME/dev/google-cloud-sdk/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/dev/scripts:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/versions/3.7.2/bin:$PATH"
 
 #export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
 #export PATH="$PATH:$PYTHON_BIN_PATH"
@@ -11,15 +12,25 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# This is to fix the Import psycopg2 Library not loaded: libssl.1.0.0.dylib error
+export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/Cellar/openssl/1.0.2t/lib
+
 # Exports
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 
 # Symbiont
 
-export SAILFISH_CONTRACT_PATH=~/dev/symbiont-node/src/stdlib:~/dev/private-equity/contracts:~/dev/symbiont-node/src/sailfish
-export SYMBIONT_HOME="$HOME/dev/symbiont-node"
+export ASSEMBLY_CONTRACT_PATH=~/dev/private-equity/pe/contracts
+#export SYMBIONT_HOME="$HOME/dev/symbiont-node"
 export SYMBIONT_REPOS_PATH="$HOME/dev/"
+export DOCKER_REGISTRY_KEY_PATH="$HOME/dev/creds/docker-registry-key.yml"
+
+export SYMBIONT_PACKAGE_DIR="$HOME/dev/symbiont-assembly-v3.3.1-mac"
+export SYMBIONT_HOME="$HOME/dev/symbiont-assembly-v3.3.1-mac"
+export PATH="${SYMBIONT_PACKAGE_DIR}/bin:${PATH}"
+export KUBECTL_VERSION=1.16.12
+export KUSTOMIZE_VERSION=3.3.0
 
 export KUBECONFIG=/Users/liamhowell/.secrets/alternative-assets-multi-dev-1.json
 export KUBE_CONFIG_PATH=$KUBECONFIG
@@ -30,6 +41,8 @@ alias cb="cd ~/dev/symbiont-node/src/capybara"
 alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
 alias ass="cd ~/dev/assembly"
 alias rundocker="docker run --name state-db -p 5432:5432 -d us.gcr.io/development-148212/txe-postgres:v3.0.0"
+alias txepgb="cd $SYMBIONT_HOME/src/postgres; docker build -t txe-postgres:herpaderp ."
+alias txepgstart="docker run -it --rm -p 5432:5432 --name local-pg3 -d txe-postgres:herpaderp  -c shared_preload_libraries='pg_stat_statements' -c pg_stat_statements.track=all"
 
 # Local, non-git-committed exports
 if [ -f ~/.localzsh ]; then
@@ -100,9 +113,9 @@ ENABLE_CORRECTION="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-if [ -f ~/.iterm2_shell_integration.zsh ]; then
-  source ~/.iterm2_shell_integration.zsh
-fi
+#if [ -f ~/.iterm2_shell_integration.zsh ]; then
+  #source ~/.iterm2_shell_integration.zsh
+#fi
 
 # User configuration
 
@@ -115,7 +128,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-   export EDITOR='vim'
+   export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -173,3 +186,9 @@ if [ -n "$PYENV_COMMAND" ] && [ ! -x "$PYENV_COMMAND_PATH" ]; then
     PYENV_COMMAND_PATH="${PYENV_ROOT}/versions/${versions[0]}/bin/${PYENV_COMMAND}"
   fi
 fi
+
+# Kitty
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
