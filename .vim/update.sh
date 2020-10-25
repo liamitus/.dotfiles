@@ -80,6 +80,7 @@ repos=(
   https://github.com/elzr/vim-json
   https://github.com/ap/vim-css-color
   https://github.com/leafgarland/typescript-vim
+  https://github.com/peitalin/vim-jsx-typescript
 
   # Typescript-specific
   https://github.com/MaxMEllon/vim-jsx-pretty
