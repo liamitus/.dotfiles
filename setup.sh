@@ -16,10 +16,15 @@ install_with_brew_cask=(
 
 install_with_brew=(
 
+  # gsort
+  coreutils
+
   # Languages
   ruby
 
-  # Makes rainbow text
+  # MOTD
+  cowsay
+  fortune
   lolcat
 
   # Python environment management
@@ -37,6 +42,11 @@ install_with_brew=(
   neovim
 
 )
+
+if [ ! -f "`which brew`" ]; then
+  echo "Installing homebrew..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 echo "Installing Oh-my-zsh..."
 CHECK_ZSH_INSTALLED=$(grep /zsh$ /etc/shells | wc -l)
@@ -101,6 +111,8 @@ rm -rf fonts
 
 echo "Installing vim plugins..."
 source ~/.dotfiles/.vim/update.sh all
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Creating vim backups directory..."
 mkdir -p ~/.backups/swaps

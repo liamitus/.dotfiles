@@ -153,8 +153,6 @@ export PIP_REQUIRE_VIRTUALENV=false
 
 alias pyclean="find . -name \*.pyc -delete"
 
-eval "$(hub alias -s)"
-
 # fish-like autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
