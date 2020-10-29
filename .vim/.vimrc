@@ -67,6 +67,9 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Intelligent code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" fzf as a vim plugin
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 " Initialize plugin system
 call plug#end()
 

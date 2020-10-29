@@ -74,9 +74,11 @@ done
 
 
 echo "Installing brew packages..."
+brew update
 for pkg in ${install_with_brew[@]}; do
   if brew ls --versions $pkg > /dev/null; then
     echo "$pkg found in brew Cellar"
+    brew reinstall $pkg
   else
     echo "Installing $pkg..."
     brew install $pkg

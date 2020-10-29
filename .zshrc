@@ -22,12 +22,12 @@ export PATH=$PATH:$GOPATH/bin
 # Symbiont
 
 export ASSEMBLY_CONTRACT_PATH=~/dev/private-equity/pe/contracts
-#export SYMBIONT_HOME="$HOME/dev/symbiont-node"
+export SYMBIONT_HOME="$HOME/dev/symbiont-node"
 export SYMBIONT_REPOS_PATH="$HOME/dev/"
 export DOCKER_REGISTRY_KEY_PATH="$HOME/dev/creds/docker-registry-key.yml"
 
 export SYMBIONT_PACKAGE_DIR="$HOME/dev/symbiont-assembly-v3.3.1-mac"
-export SYMBIONT_HOME="$HOME/dev/symbiont-assembly-v3.3.1-mac"
+#export SYMBIONT_HOME="$HOME/dev/symbiont-assembly-v3.3.1-mac"
 export PATH="${SYMBIONT_PACKAGE_DIR}/bin:${PATH}"
 export KUBECTL_VERSION=1.16.12
 export KUSTOMIZE_VERSION=3.3.0
