@@ -1,1 +1,1 @@
-/Users/liamhowell/.vimrc
+/Users/liamhowell/.dotfiles/.vim/.vimrc

@@ -290,9 +290,8 @@ nnoremap <C-P> :cprev<CR>
 noremap <silent> <C-k> :call <SID>swap_up()<CR>
 noremap <silent> <C-j> :call <SID>swap_down()<CR>
 
-" Insert the current date
-nnoremap <F5> "=strftime("%m-%d-%Y")<CR>p
-inoremap <F5> <C-R>=strftime("%m-%d-%Y")<CR>
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 nmap <silent> <leader>rr :Semshi rename<CR>
 

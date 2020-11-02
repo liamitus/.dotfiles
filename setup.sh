@@ -66,10 +66,10 @@ echo "Installing brew cask packages..."
 for pkg in ${install_with_brew_cask[@]}; do
   if brew list --cask --versions $pkg > /dev/null; then
     echo "$pkg found in brew cask Cellar"
-  else
-    echo "Installing $pkg..."
-    brew cask install $pkg
+    brew uninstall $pkg
   fi
+  echo "Installing $pkg..."
+  brew cask install $pkg
 done
 
 
@@ -85,13 +85,13 @@ for pkg in ${install_with_brew[@]}; do
   fi
 done
 
+
 # Custom stuff not installed with brew
 
 echo "Creating backup folder"
-mkdir ~/.backups
-mkdir ~/.backups/swaps
-mkdir ~/.backups/undofiles
-mkdir ~/.backups/backups
+mkdir -p ~/.backups/swaps
+mkdir -p ~/.backups/undofiles
+mkdir -p ~/.backups/backups
 
 echo "Adding symlinks..."
 ln -Fsv ~/.dotfiles/.zshrc ~/.zshrc
@@ -101,7 +101,7 @@ ln -Fsv ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -Fsv ~/.dotfiles/.zsh ~/.zsh
 ln -Fsv ~/.dotfiles/.oh-my-zsh ~/.oh-my-zsh
 ln -Fsv ~/.dotfiles/iterm_profiles ~/Documents/iterm_profiles
-ln -Fsv ~/.config/kitty/kitty.conf
+ln -Fsv ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf 
 
 echo "Installing custom fonts..."
 rm -rf fonts
@@ -123,12 +123,19 @@ mkdir -p ~/.backups/undofiles
  
 echo "Sharing vim config with neovim..."
 mkdir -p ~/.config/
-ln -s ~/.dotfiles/.vim ~/.config/nvim
-# Not sure why this gets created...
-rm ~/.vim/.vim
-ln -s ~/.dotfiles/.vim/.vimrc ~/.config/nvim/init.vim
+ln -Fsv ~/.dotfiles/.vim ~/.config/nvim
+ln -Fsv ~/.dotfiles/.vim/.vimrc ~/.config/nvim/init.vim
+
+echo "Cleaning up..."
+# Really not sure why these get created. I'm probably doing something stupid.
+rm .vim/.vim
+rm .oh-my-zsh/.oh-my-zsh
+rm .zsh/.zsh
+rm iterm_profiles/iterm_profiles
 
 echo "
+* * * * * * * * * * * * * * * * SETUP COMPLETE * * * * * * * * * * * * * * * * *
+
 Reload the shell with:
 
 source ~/.zshrc
