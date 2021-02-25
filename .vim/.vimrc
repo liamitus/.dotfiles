@@ -174,6 +174,7 @@ let g:ctrlp_switch_buffer = 0
 " Autocommands {{{
 
 " Auto source this file when saved
+au bufwritepost init.vim source %
 au bufwritepost .vimrc source %
 
 " Folding
@@ -211,6 +212,9 @@ endif
 
 " Leader key
 let mapleader = "\<Space>"
+
+" Editing this vimrc from anywhere
+nnoremap <leader>, :tabedit $MYVIMRC<CR>
  
 " Line numbers
 nnoremap <leader>l :setlocal number!<CR>
@@ -221,9 +225,6 @@ nnoremap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 
 " Paste mode (maintains formatting)
 nnoremap <leader>p :set paste!<CR>
-
-" Editing this vimrc from anywhere
-nnoremap <leader>, :tabedit $MYVIMRC<CR>
 
 " Saving the current file
 nnoremap <leader>s :w<CR>
@@ -248,11 +249,6 @@ nnoremap <leader>e :Ex<CR>
 nnoremap <leader>x :Sex<CR>
 nnoremap <leader>t :Tex<CR>
 nnoremap <leader>v :Vex<CR>
-
-" Python support
-nnoremap <Leader>g :call RopeGotoDefinition()<CR>
-nnoremap <Leader>d Obreakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
-nnoremap <Leader>D Ofrom pprint import pprint; breakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
 
 " Tab/Space normalization
 "nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
@@ -282,6 +278,7 @@ nnoremap <C-e> :e#<CR>
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprev<CR>
 
+" Open buffer list
 nnoremap ; :CtrlPBuffer<CR>
 nnoremap <C-N> :cnext<CR>
 nnoremap <C-P> :cprev<CR>
@@ -293,17 +290,25 @@ noremap <silent> <C-j> :call <SID>swap_down()<CR>
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-nmap <silent> <leader>rr :Semshi rename<CR>
+" Start a subsitution with the current search
+nmap <expr> m  ':%s/' . @/ . '//g<LEFT><LEFT>'
 
+" React native support
+nmap S a style={styles.}<LEFT>
+
+" Python support
+nnoremap <Leader>g :call RopeGotoDefinition()<CR>
+nnoremap <Leader>d Obreakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
+nnoremap <Leader>D Ofrom pprint import pprint; breakpoint() # <------- VERY OBVIOUSLY A BREAKPOINT<C-c>
+
+" Semshi
+nmap <silent> <leader>rr :Semshi rename<CR>
 nmap <silent> <Tab> :Semshi goto name next<CR>
 nmap <silent> <S-Tab> :Semshi goto name prev<CR>
-
 nmap <silent> <leader>c :Semshi goto class next<CR>
 nmap <silent> <leader>C :Semshi goto class prev<CR>
-
 nmap <silent> <leader>f :Semshi goto function next<CR>
 nmap <silent> <leader>F :Semshi goto function prev<CR>
-
 nmap <silent> <leader>ee :Semshi error<CR>
 nmap <silent> <leader>ge :Semshi goto error<CR>
 
