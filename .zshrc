@@ -5,6 +5,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/dev/scripts:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.pyenv/versions/3.7.2/bin:$PATH"
+export PATH="/Applications/symbiont/current/bin:$PATH"
 
 #export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
 #export PATH="$PATH:$PYTHON_BIN_PATH"
@@ -14,10 +15,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # This is to fix the Import psycopg2 Library not loaded: libssl.1.0.0.dylib error
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/Cellar/openssl/1.0.2t/lib
-
-# Exports
-export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
 
 # Symbiont
 
@@ -35,14 +32,12 @@ export KUSTOMIZE_VERSION=3.3.0
 export KUBECONFIG=/Users/liamhowell/.secrets/alternative-assets-multi-dev-1.json
 export KUBE_CONFIG_PATH=$KUBECONFIG
 
-alias pe="cd ~/dev/private-equity && pipenv shell"
 alias sf="cd ~/dev/symbiont-node/src/sailfish && pipenv shell"
-alias cb="cd ~/dev/symbiont-node/src/capybara"
-alias sl="cd ~/dev/symbiont-node/src/stdlib && pyenv activate sailfish"
-alias ass="cd ~/dev/assembly"
+alias pe="cd ~/dev/private-equity && pipenv shell"
 alias rundocker="docker run --name state-db -p 5432:5432 -d us.gcr.io/development-148212/txe-postgres:v3.0.0"
 alias txepgb="cd $SYMBIONT_HOME/src/postgres; docker build -t txe-postgres:herpaderp ."
 alias txepgstart="docker run -it --rm -p 5432:5432 --name local-pg3 -d txe-postgres:herpaderp  -c shared_preload_libraries='pg_stat_statements' -c pg_stat_statements.track=all"
+
 
 # Local, non-git-committed exports
 if [ -f ~/.localzsh ]; then
@@ -190,3 +185,4 @@ autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
+[ -f "/Users/liamhowell/.ghcup/env" ] && source "/Users/liamhowell/.ghcup/env" # ghcup-env
