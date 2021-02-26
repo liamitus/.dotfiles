@@ -9,6 +9,9 @@
 
 install_with_brew_cask=(
 
+  # Terminal font
+  font-source-code-pro
+
   # Kitty terminal. Uses GPU instead of CPU and is waaaaaay faster than iterm
   kitty
 
@@ -62,6 +65,9 @@ if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
   # Yes, really.
 fi
 
+echo "Tapping homebrew/cask-fonts..."
+brew tap homebrew/cask-fonts
+
 echo "Installing brew cask packages..."
 for pkg in ${install_with_brew_cask[@]}; do
   if brew list --cask --versions $pkg > /dev/null; then
@@ -88,7 +94,10 @@ done
 
 # Custom stuff not installed with brew
 
-echo "Creating backup folder"
+echo "Installing amplify..."
+curl -sL https://aws-amplify.github.io/amplify-cli/install | bash
+
+echo "Creating backup folders..."
 mkdir -p ~/.backups/swaps
 mkdir -p ~/.backups/undofiles
 mkdir -p ~/.backups/backups
@@ -135,10 +144,5 @@ rm iterm_profiles/iterm_profiles
 
 echo "
 * * * * * * * * * * * * * * * * SETUP COMPLETE * * * * * * * * * * * * * * * * *
-
-Reload the shell with:
-
-source ~/.zshrc
-
-Or open a new shell window
 "
+$SHELL

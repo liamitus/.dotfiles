@@ -2,10 +2,10 @@
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/dev/google-cloud-sdk/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/dev/scripts:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.pyenv/versions/3.7.2/bin:$PATH"
 export PATH="/Applications/symbiont/current/bin:$PATH"
+export PATH="$HOME/dev/scripts:$PATH"
 
 #export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
 #export PATH="$PATH:$PYTHON_BIN_PATH"
@@ -50,6 +50,7 @@ alias ml="cd ~/dev/moonlambo"
 alias mt="cd $HOME/dev/go/src/github.com/liamitus/mercury-tax"
 alias mtrun="mt && dev_appserver.py app/app.yaml"
 alias ctags="`brew --prefix`/bin/ctags"
+alias val='ssh -i "~/permissions/Desktop.pem" ubuntu@ec2-3-220-196-196.compute-1.amazonaws.com'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -186,3 +187,6 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 [ -f "/Users/liamhowell/.ghcup/env" ] && source "/Users/liamhowell/.ghcup/env" # ghcup-env
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
