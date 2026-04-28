@@ -29,7 +29,6 @@ ZSH_THEME=""
 ENABLE_CORRECTION="true"
 plugins=(
   git
-  colored-man-pages
   command-not-found
 )
 source $ZSH/oh-my-zsh.sh
