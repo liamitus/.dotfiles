@@ -1,7 +1,8 @@
 *.un~
 *.swp
-.localzsh
-.zsh/.zsh
-.oh-my-zsh/.oh-my-zsh
-.vim/plugged/
+*.swo
 .DS_Store
+.localzsh
+.vim/plugged/
+.vim/autoload/plug.vim
+.vim/.netrwhist

@@ -1,148 +1,112 @@
-# Set up my preferred local environment on mac.
+#!/usr/bin/env bash
 #
-# This script is idempotent.
+# Set up my preferred local environment on macOS.
 #
-# Run the set up process:
+# Idempotent: safe to run multiple times.
 #
 #   ./setup.sh
 #
+set -euo pipefail
 
-install_with_brew_cask=(
+DOTFILES="$HOME/.dotfiles"
 
-  # Terminal font
-  font-source-code-pro
-
-  # Kitty terminal. Uses GPU instead of CPU and is waaaaaay faster than iterm
+casks=(
+  font-fira-code-nerd-font
   kitty
-
 )
 
-install_with_brew=(
-
-  # gsort
-  coreutils
-
-  # Languages
-  ruby
-
-  # MOTD
+brews=(
+  coreutils            # GNU utils (gsort, etc.)
   cowsay
   fortune
   lolcat
-
-  # Python environment management
+  pure                 # the zsh prompt
+  zsh-autosuggestions  # fish-like inline suggestions
+  zsh-syntax-highlighting
   pyenv
   pyenv-virtualenv
-
-  # Ack-like grep but optimized for programmers
-  the_silver_searcher
   fzf
-
-  # Development helper
+  the_silver_searcher  # ag
   ctags
-
-  # Neovim
   neovim
-
 )
 
-if [ ! -f "`which brew`" ]; then
-  echo "Installing homebrew..."
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# --- Homebrew ----------------------------------------------------------------
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "Installing Oh-my-zsh..."
-CHECK_ZSH_INSTALLED=$(grep /zsh$ /etc/shells | wc -l)
-if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
-	echo "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
-	echo "*                                                                       *"
-	echo "*      Run this script twice if oh-my-zsh wasn't already installed      *"
-	echo "*         because this next part will prevent the rest of the           *"
-	echo "*                     of the setup from completing.                     *"
-	echo "*                                                                       *"
-	echo "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
-	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  # Yes, really.
+# Make sure brew is on PATH for the rest of this script (Apple Silicon vs Intel)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-echo "Tapping homebrew/cask-fonts..."
-brew tap homebrew/cask-fonts
+# --- oh-my-zsh ---------------------------------------------------------------
 
-echo "Installing brew cask packages..."
-for pkg in ${install_with_brew_cask[@]}; do
-  if brew list --cask --versions $pkg > /dev/null; then
-    echo "$pkg found in brew cask Cellar"
-    brew uninstall $pkg
-  fi
-  echo "Installing $pkg..."
-  brew cask install $pkg
-done
+if [[ ! -d "$DOTFILES/.oh-my-zsh" ]]; then
+  echo "Installing oh-my-zsh..."
+  RUNZSH=no KEEP_ZSHRC=yes ZSH="$DOTFILES/.oh-my-zsh" \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
+# --- Brew packages -----------------------------------------------------------
 
-echo "Installing brew packages..."
+echo "Installing casks..."
+brew install --cask "${casks[@]}" 2>&1 | grep -v "already installed" || true
+
+echo "Updating Homebrew..."
 brew update
-for pkg in ${install_with_brew[@]}; do
-  if brew ls --versions $pkg > /dev/null; then
-    echo "$pkg found in brew Cellar"
-    brew reinstall $pkg
-  else
-    echo "Installing $pkg..."
-    brew install $pkg
-  fi
-done
 
+echo "Installing formulae..."
+brew install "${brews[@]}" 2>&1 | grep -v "already installed" || true
 
-# Custom stuff not installed with brew
+# --- Symlinks ----------------------------------------------------------------
 
-echo "Installing amplify..."
-curl -sL https://aws-amplify.github.io/amplify-cli/install | bash
+echo "Linking config files..."
 
-echo "Creating backup folders..."
-mkdir -p ~/.backups/swaps
-mkdir -p ~/.backups/undofiles
-mkdir -p ~/.backups/backups
+mkdir -p ~/.config/kitty ~/.config/nvim ~/Documents
 
-echo "Adding symlinks..."
-ln -Fsv ~/.dotfiles/.zshrc ~/.zshrc
-ln -Fsv ~/.dotfiles/.zsh ~/.zsh
-ln -Fsv ~/.dotfiles/.vim ~/.vim
-ln -Fsv ~/.dotfiles/.vim/.vimrc ~/.vimrc
-ln -Fsv ~/.dotfiles/.zsh ~/.zsh
-ln -Fsv ~/.dotfiles/.oh-my-zsh ~/.oh-my-zsh
-ln -Fsv ~/.dotfiles/iterm_profiles ~/Documents/iterm_profiles
-ln -Fsv ~/.dotfiles/kitty.conf ~/.config/kitty/kitty.conf 
+# -h prevents following an existing symlink at the destination (otherwise
+# ln writes inside the linked dir and creates a self-referential symlink).
+link() {
+  local src=$1 dst=$2
+  ln -Fhsv "$src" "$dst"
+}
 
-echo "Installing custom fonts..."
-rm -rf fonts
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
+link "$DOTFILES/.zshrc"      ~/.zshrc
+link "$DOTFILES/.vim"        ~/.vim
+link "$DOTFILES/.vim/.vimrc" ~/.vimrc
+link "$DOTFILES/.vim"        ~/.config/nvim
+link "$DOTFILES/.vim/.vimrc" ~/.config/nvim/init.vim
+link "$DOTFILES/.oh-my-zsh"  ~/.oh-my-zsh
+link "$DOTFILES/kitty.conf"  ~/.config/kitty/kitty.conf
+link "$DOTFILES/iterm_profiles" ~/Documents/iterm_profiles
+
+# --- Backup directories used by vim ------------------------------------------
+
+mkdir -p ~/.backups/{swaps,backups,undofiles}
+
+# --- vim-plug + plugins ------------------------------------------------------
+
+if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+  echo "Installing vim-plug..."
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+if [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]]; then
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 echo "Installing vim plugins..."
-source ~/.dotfiles/.vim/update.sh all
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim --headless +PlugInstall +qall 2>/dev/null || vim +PlugInstall +qall
 
-echo "Creating vim backups directory..."
-mkdir -p ~/.backups/swaps
-mkdir -p ~/.backups/backups
-mkdir -p ~/.backups/undofiles
- 
-echo "Sharing vim config with neovim..."
-mkdir -p ~/.config/
-ln -Fsv ~/.dotfiles/.vim ~/.config/nvim
-ln -Fsv ~/.dotfiles/.vim/.vimrc ~/.config/nvim/init.vim
-
-echo "Cleaning up..."
-# Really not sure why these get created. I'm probably doing something stupid.
-rm .vim/.vim
-rm .oh-my-zsh/.oh-my-zsh
-rm .zsh/.zsh
-rm iterm_profiles/iterm_profiles
-
-echo "
-* * * * * * * * * * * * * * * * SETUP COMPLETE * * * * * * * * * * * * * * * * *
-"
-$SHELL
+echo
+echo "* * * * * * * * * * * * * * * * SETUP COMPLETE * * * * * * * * * * * * * * * * *"
+echo
+echo "Open a new terminal or run: exec zsh"
