@@ -14,6 +14,10 @@ path=(
   $HOME/Applications/bin
   $path
 )
+# The .NET SDK installer's /etc/paths.d/dotnet-cli-tools puts a literal
+# "~/.dotnet/tools" in PATH: path_helper doesn't expand ~, so it's a relative
+# directory, searched from wherever the shell is. Point it at the real one.
+path=("${path[@]/#%\~\/.dotnet\/tools/$HOME/.dotnet/tools}")
 
 # Editor
 export EDITOR=${${SSH_CONNECTION:+vim}:-nvim}
